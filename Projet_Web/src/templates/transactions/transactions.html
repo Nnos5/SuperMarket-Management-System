@@ -1,0 +1,38 @@
+{% extends 'accounts/nav.html' %}
+
+{% block title %}Settings{% endblock %}
+
+{% block content %}
+<script>
+    $(document).ready(function() {
+        $("#view").load("{% url 'sale' %}");
+        $("#index #disp a").click(function() {
+            $("a.selected").removeClass("selected");
+            $(this).addClass("selected");
+            page = "{% url 'sale' %}";
+            pageurl = "";
+            if ($(this).attr("id") == 'expense') {
+                pageurl = page.replace("sale", $(this).attr("id"));
+                pageurl = pageurl.replace("sale", "expense");
+            } else {
+                pageurl = page.replace("sale", $(this).attr("id"));
+            }
+            $("#view").load(pageurl);
+        });
+    });
+</script>
+
+<div class="container my-5" style="max-width: 90%;">
+    <!-- Sidebar -->
+    <div id="disp" class="sidenav bg-light rounded shadow-sm p-2">
+        <a id="sale" class="selected nav-link text-blink p-3" href="#sale">Sales</a>
+        <a id="expense" class="nav-link text-blink p-3" href="#expense">Expenses</a>
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="embed-responsive main" style="max-width: 92%; padding-left: 20px;">
+        <div id='view' class="shadow-sm"></div>
+    </div>
+</div>
+
+{% endblock %}

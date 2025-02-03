@@ -1,0 +1,88 @@
+{% load static %}
+
+<div class="container my-4">
+    <div class="row navbar navbar-light mb-3 text-monospace">
+        <h5 class="text-uppercase font-weight-lighter text-info">Account Roles</h5>
+    </div>
+
+    <style type="text/css">
+        .parent .row:hover {
+            background-color: #f0f8ff;
+            box-shadow: 0 1rem 1.5rem rgba(0, 0, 0, .1) !important;
+            cursor: pointer;
+        }
+
+        .row {
+            border-radius: 8px;
+        }
+
+        .text-monospace {
+            font-family: 'Courier New', monospace;
+        }
+
+        .btn {
+            border-radius: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .pagination .btn {
+            margin-left: 5px;
+        }
+
+        .pagination .btn.disabled {
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+
+        .pagination {
+            margin-top: 20px;
+        }
+    </style>
+
+    <!-- content -->
+    <div class="text-monospace">
+        <div class="row text-muted border-bottom mb-3">
+            <div class="col-3 pl-5 font-weight-bold">Role</div>
+            <div class="col-7 px-0 font-weight-bold">Description</div>
+            <div class="col-2 px-0 font-weight-bold">Total Users</div>
+        </div>
+
+        {% for role in roles %}
+            <div class="parent">
+                <div class="row highlight bg-light mb-3 py-3">
+                    <div class="col-3 pl-5">{{ role.name }}</div>
+                    <div class="col-7 px-0">{{ role.description }}</div>
+                    <div class="col-2 px-0 text-center">{{ role.user_set.count }}</div>
+                </div>
+            </div>
+        {% endfor %}
+
+        <div id="page" class="pagination justify-content-end mt-4">
+            <span class="step-links">
+                <span>
+                    {% if page_obj.has_previous %}
+                        <a class="btn btn-outline-primary" href="#{% url 'roles' %}?page={{ page_obj.previous_page_number }}">PREVIOUS</a>
+                    {% else %}
+                        <a href="#" class="btn disabled text-muted">PREVIOUS</a>
+                    {% endif %}
+                </span>
+                <span class="mx-3">
+                    Page {{ page_obj.number }} of {{ paginator.num_pages }}
+                </span>
+                <span>
+                    {% if page_obj.has_next %}
+                        <a class="btn btn-outline-primary" href="#{% url 'roles' %}?page={{ page_obj.next_page_number }}">NEXT</a>
+                    {% else %}
+                        <a href="#" class="btn disabled text-muted">NEXT</a>
+                    {% endif %}
+                </span>
+            </span>
+        </div>
+    </div>
+    <!-- End of content -->
+</div>

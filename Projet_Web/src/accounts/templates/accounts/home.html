@@ -1,0 +1,126 @@
+{% extends 'accounts/nav.html' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+    <script type="text/javascript">
+        $(document).ready(function () {
+            document.getElementById("user_logo").style.display = "none";
+            var logo = document.getElementById('nav_logo');
+            var logoText = document.getElementById('nav_title');
+            var img = document.getElementById("user_logo").getAttribute("src");
+            var title = document.getElementById("user_logo").getAttribute("alt");
+            //logo.src = img;
+            logoText.innerHTML = title;
+        });
+    </script>
+    <div class="container my-5">
+        <!-- User Logo -->
+        <img id="user_logo" src="/media/{{ logo1.png }}" alt="{{ company.name }}" class="mb-4" style="display:none;">
+        <h5 class="text-uppercase font-weight-lighter text-primary ml-3">Sommaire</h5>
+
+        <!-- Card Section -->
+        <div class="row justify-content-center">
+            <a class="navbar-brand" href="{% url 'reports' %}">
+                <div class="card shadow-lg my-4 mx-4 custom-card">
+                    <div class="card-body text-center">
+                        <h5 class="card-title text-muted">Total Users</h5>
+                        <h4 class="card-text text-primary font-weight-bold">{{ users }}</h4>
+                    </div>
+                </div>
+            </a>
+            <a class="navbar-brand" href="{% url 'reports' %}">
+                <div class="card shadow-lg my-4 mx-4 custom-card">
+                    <div class="card-body text-center">
+                        <h5 class="card-title text-muted">Total User Roles</h5>
+                        <h4 class="card-text text-primary font-weight-bold">{{ roles }}</h4>
+                    </div>
+                </div>
+            </a>
+            <a class="navbar-brand" href="{% url 'reports' %}">
+                <div class="card shadow-lg my-4 mx-4 custom-card">
+                    <div class="card-body text-center">
+                        <h5 class="card-title text-muted">Total Purchases</h5>
+                        <h4 class="card-text text-primary font-weight-bold">{{ purchases }}</h4>
+                    </div>
+                </div>
+            </a>
+            <a class="navbar-brand" href="{% url 'reports' %}">
+                <div class="card shadow-lg my-4 mx-4 custom-card">
+                    <div class="card-body text-center">
+                        <h5 class="card-title text-muted">Total Stock Types</h5>
+                        <h4 class="card-text text-primary font-weight-bold">{{ stocks }}</h4>
+                    </div>
+                </div>
+            </a>
+            <a class="navbar-brand" href="{% url 'reports' %}">
+                <div class="card shadow-lg my-4 mx-4 custom-card">
+                    <div class="card-body text-center">
+                        <h5 class="card-title text-muted">Total Sales Transactions</h5>
+                        <h4 class="card-text text-primary font-weight-bold">{{ sales }}</h4>
+                    </div>
+                </div>
+            </a>
+            <a class="navbar-brand" href="{% url 'reports' %}">
+                <div class="card shadow-lg my-4 mx-4 custom-card">
+                    <div class="card-body text-center">
+                        <h5 class="card-title text-muted">Total Expenses Category</h5>
+                        <h4 class="card-text text-primary font-weight-bold">{{ category }}</h4>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <style>
+        /* Custom Styles */
+        .custom-card {
+            width: 18rem;
+            border-radius: 10px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            word-wrap: break-word; /* Ensure text inside doesn't overflow */
+        }
+
+        .custom-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-body {
+            padding: 1.5rem; /* Reduced padding to fit text properly */
+        }
+
+        .card-title {
+            font-size: 1.1rem;
+        }
+
+        .card-text {
+            font-size: 1.4rem;
+            font-weight: bold;
+            word-wrap: break-word; /* Handle large text gracefully */
+        }
+
+        h5 {
+            font-size: 1.3rem;
+        }
+
+        /* Adjust layout on smaller screens */
+        @media (max-width: 767px) {
+            .custom-card {
+                width: 100%;
+                margin-bottom: 20px; /* Add margin for better spacing */
+            }
+        }
+
+        /* Animation effect for headings */
+        h5, .card-title, .card-text {
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+    </style>
+{% endblock %}

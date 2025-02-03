@@ -1,0 +1,82 @@
+{% extends "accounts/base.html" %}
+
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+  <div class="container-fluid pt-5">
+    <div class="row align-items-center">
+        <!-- Left Column -->
+        <div class="col-md-6 text-center text-md-left mb-4 mb-md-0">
+            <div class="logo-container mb-4">
+                <img class="display-5 mb-4" src="{% static 'images/Logo.png' %}" alt="Logo" />
+            </div>
+            <div class="mb-4">
+                <h1 class="text-primary font-weight-bold">Système de Gestion de Supermarché</h1>
+            </div>
+            <div class="mb-4">
+                <p class="text-muted">Gérez votre supermarché efficacement avec notre système moderne et facile à utiliser.</p>
+            </div>
+            <div class="d-flex justify-content-center justify-content-md-start">
+                <a class="btn btn-primary btn-lg shadow-lg" href="{% url 'login' %}">
+                    Login
+                </a>
+            </div>
+        </div>
+
+        <!-- Right Column (Image) -->
+        <div class="col-md-6 text-center">
+            <div class="image-container">
+                <!-- Image agrandie -->
+                <img class="d-block rounded-circle shadow-lg hover-zoom" src="{% static 'images/home.jpeg' %}" style="width: 100%; height: auto;" alt="Landing page" />
+            </div>
+        </div>
+    </div>
+  </div>
+
+  <style>
+    /* Animation et effets */
+    .logo-container img {
+      animation: logoAnim 2s ease-in-out;
+    }
+
+    .hover-zoom {
+      transition: transform 0.3s ease;
+    }
+
+    .hover-zoom:hover {
+      transform: scale(1.05);
+    }
+
+    /* Animation du texte */
+    h2 {
+      animation: fadeInUp 1.5s ease-out;
+    }
+
+    p {
+      animation: fadeInUp 2s ease-out;
+    }
+
+    .btn {
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .btn:hover {
+      background-color: #004085;
+      transform: translateY(-3px);
+    }
+
+    /* Animations */
+    @keyframes logoAnim {
+      0% { opacity: 0; transform: scale(0.8); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+
+    @keyframes fadeInUp {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+{% endblock %}
